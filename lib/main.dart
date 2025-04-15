@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'home_page.dart';
-import 'music_provider.dart';
+import 'app/home/presentation/home_page.dart';
+import 'app/home/application/music_provider.dart';
 
 void main() {
   runApp(

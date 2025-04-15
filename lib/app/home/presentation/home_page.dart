@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spotify_web/music_provider.dart';
+import 'package:spotify_web/app/home/application/music_provider.dart';
 
 import 'PlayerScreen.dart';
 

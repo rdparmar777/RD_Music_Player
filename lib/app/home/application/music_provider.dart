@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
-import 'package:spotify_web/songs.dart';
+import 'package:spotify_web/app/home/models/songs.dart';
 import 'package:spotify_web/utils/Utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,7 +25,7 @@ class MusicProvider extends ChangeNotifier {
   }
 
   List<Results> trendingSongs = [];
-  List<Results> _searchResults = [];
+  final List<Results> _searchResults = [];
   final AudioPlayer _audioPlayer = AudioPlayer();
   Results? currentSong;
   int _currentPage = 1;
