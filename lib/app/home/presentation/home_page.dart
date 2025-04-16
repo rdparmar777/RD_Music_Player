@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spotify_web/app/home/application/music_provider.dart';
 
+import '../application/music_provider.dart';
 import 'PlayerScreen.dart';
 
 class HomePage extends StatefulWidget {
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                               crossAxisCount: 2,
                               crossAxisSpacing: 5,
                               mainAxisSpacing: 5,
-                              childAspectRatio: 1,
+                              childAspectRatio: 0.9,
                             ),
                             itemCount: songs.length,
                             itemBuilder: (context, index) {
@@ -87,50 +87,52 @@ class _HomePageState extends State<HomePage> {
                                 child: Card(
                                   shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(95),
-                                          topRight: Radius.circular(95),
-                                          bottomLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10))),
+                                          topLeft: Radius.circular(35),
+                                          topRight: Radius.circular(35),
+                                          bottomLeft: Radius.circular(2),
+                                          bottomRight: Radius.circular(2))),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       ClipRRect(
-                                        borderRadius: const BorderRadius.vertical(top: Radius.circular(95)),
+                                        borderRadius: const BorderRadius.vertical(top: Radius.circular(35)),
                                         child: Image.network(song.image?.last.url ?? "",
                                             height: 120, width: double.infinity, fit: BoxFit.cover),
                                       ),
                                       const SizedBox(
                                         height: 14,
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                                        child: Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    song.name ?? "",
-                                                    maxLines: 1,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      song.name ?? "",
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    song.artists?.primary?.last.name ?? "",
-                                                    maxLines: 1,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    style: const TextStyle(fontSize: 12),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      song.artists?.primary?.last.name ?? "",
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: const TextStyle(fontSize: 12),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],

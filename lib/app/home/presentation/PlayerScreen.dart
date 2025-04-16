@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/image.dart' as flutter_image;
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
-import 'package:spotify_web/app/home/models/songs.dart';
-import 'package:spotify_web/utils/Utils.dart';
 
+
+import '../../../utils/Utils.dart';
 import '../application/music_provider.dart';
+import '../models/songs.dart';
 
 class PlayerScreen extends StatelessWidget {
   const PlayerScreen({super.key});
