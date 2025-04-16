@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.spotify.web" "\0"
-            VALUE "FileDescription", "spotify_web" "\0"
+            VALUE "FileDescription", "rd_music_player" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "spotify_web" "\0"
+            VALUE "InternalName", "rd_music_player" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.spotify.web. All rights reserved." "\0"
-            VALUE "OriginalFilename", "spotify_web.exe" "\0"
-            VALUE "ProductName", "spotify_web" "\0"
+            VALUE "OriginalFilename", "rd_music_player.exe" "\0"
+            VALUE "ProductName", "rd_music_player" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

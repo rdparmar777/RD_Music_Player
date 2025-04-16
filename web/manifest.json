@@ -1,6 +1,6 @@
 {
-    "name": "spotify_web",
-    "short_name": "spotify_web",
+    "name": "rd_music_player",
+    "short_name": "rd_music_player",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

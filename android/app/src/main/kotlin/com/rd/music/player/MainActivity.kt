@@ -1,4 +1,4 @@
-package com.spotify.web.spotify_web
+package com.rd.music.player
 
 import io.flutter.embedding.android.FlutterActivity
 
