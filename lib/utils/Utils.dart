@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 
 void dPrint(var msg) {
   debugPrint(msg);
 }
-
 
 String formatDuration(Duration duration) {
   String twoDigits(int n) => n.toString().padLeft(2, '0');

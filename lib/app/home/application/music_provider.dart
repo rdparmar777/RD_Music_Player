@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/Utils.dart';
@@ -10,6 +11,16 @@ import '../models/songs.dart';
 
 class MusicProvider extends ChangeNotifier {
   AudioPlayer get player => _audioPlayer;
+  PageController? _pageController;
+
+  void setPageController(PageController controller) {
+    _pageController = controller;
+  }
+
+  PageController get pageController {
+    _pageController ??= PageController();
+    return _pageController!;
+  }
 
   MusicProvider() {
     player.playerStateStream.listen((state) {
@@ -32,7 +43,7 @@ class MusicProvider extends ChangeNotifier {
   int _currentPage = 1;
   bool _isFetching = false;
   bool _hasMore = true;
-  String _lastQuery = 'Arijit';
+  String _lastQuery = 'Hindi 2025';
   bool isPlaying = false;
   bool _isLoadingNewSong = false;
 
@@ -81,7 +92,7 @@ class MusicProvider extends ChangeNotifier {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      printWrapped(response.body);
+      // printWrapped(response.body);
       final results = data['data']['results'] as List<dynamic>;
 
       if (results.isEmpty) {
@@ -105,7 +116,20 @@ class MusicProvider extends ChangeNotifier {
     try {
       final urlToPlay = song.downloadUrl?.last.url ?? "";
       final secureUrl = urlToPlay.replaceFirst('http://', 'https://');
-      await player.setUrl(secureUrl);
+      // await player.setUrl(secureUrl);
+      await _audioPlayer.setAudioSource(
+        AudioSource.uri(
+          Uri.parse(secureUrl),
+          tag: MediaItem(
+            id: song.id ?? '',
+            album: song.album?.name ?? '',
+            title: song.name ?? '',
+            artist: song.artists?.primary?.last.name ?? '',
+            artUri: Uri.parse(song.image?.last.url ?? ''),
+          ),
+        ),
+      );
+
       currentSong = song;
       _isLoadingNewSong = false;
       notifyListeners();
@@ -136,6 +160,13 @@ class MusicProvider extends ChangeNotifier {
     final currentIndex = songsList.indexWhere((song) => song.id == currentSong!.id);
     final nextIndex = (currentIndex + 1) % songsList.length;
     final nextSong = songsList[nextIndex];
+    if (_pageController != null) {
+      _pageController!.animateToPage(
+        nextIndex,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+      );
+    }
 
     _isLoadingNewSong = true;
     playSong(nextSong);
@@ -154,7 +185,13 @@ class MusicProvider extends ChangeNotifier {
     // Calculate previous index (with wrap-around)
     final prevIndex = (currentIndex - 1 + songsList.length) % songsList.length;
     final prevSong = songsList[prevIndex];
-
+    if (_pageController != null) {
+      _pageController!.animateToPage(
+        prevIndex,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+      );
+    }
     playSong(prevSong);
   }
 }

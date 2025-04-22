@@ -115,7 +115,7 @@ class PlayerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<MusicProvider>(context);
+    final provider = context.watch<MusicProvider>();
     final song = provider.currentSong;
     final player = provider.player;
 
@@ -127,12 +127,12 @@ class PlayerScreen extends StatelessWidget {
 
     final currentIndex = songsList.indexWhere((s) => s.id == song.id);
 
-    final pageController = PageController(initialPage: currentIndex);
+    provider.setPageController(PageController(initialPage: currentIndex));
 
     return Scaffold(
       appBar: AppBar(title: const Text("Now Playing")),
       body: PageView.builder(
-        controller: pageController,
+        controller: provider.pageController,
         itemCount: songsList.length,
         onPageChanged: (index) {
           if (index != currentIndex) {

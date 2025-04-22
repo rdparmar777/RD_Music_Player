@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "988029147686",
+    "project_id": "rd-music-player",
+    "storage_bucket": "rd-music-player.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988029147686:android:19f0f9f12bd7862983a4e7",
+        "android_client_info": {
+          "package_name": "com.rd.music.player"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6IWz8xZRDrRWOY8Q9Zda_QIzJvq8wUq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

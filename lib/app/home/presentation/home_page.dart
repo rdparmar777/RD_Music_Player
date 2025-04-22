@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/theme.dart';
 import '../application/music_provider.dart';
-import 'PlayerScreen.dart';
+import 'player_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,7 +38,18 @@ class _HomePageState extends State<HomePage> {
     final provider = context.watch<MusicProvider>();
     final songs = provider.searchResults.isNotEmpty ? provider.searchResults : provider.trendingSongs;
     return Scaffold(
-      appBar: AppBar(title: const Text("RD Player")),
+      backgroundColor: rScreenBGColor,
+      appBar: AppBar(
+          backgroundColor: rScreenBGColor,
+          title: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "RD Music Player",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Colors.white),
+              ),
+            ],
+          )),
       body: Stack(
         children: [
           Column(
@@ -45,12 +57,12 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: TextField(
-                  /*onChanged: (value) {
-                    provider.searchSongs(value, isNewSearch: true);
-                  },*/
-                  onSubmitted: (value) {
+                  onChanged: (value) {
                     provider.searchSongs(value, isNewSearch: true);
                   },
+                  // onSubmitted: (value) {
+                  //   provider.searchSongs(value, isNewSearch: true);
+                  // },
                   decoration: const InputDecoration(
                     labelText: "Search Music",
                     border: OutlineInputBorder(),
@@ -65,7 +77,8 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           GridView.builder(
                             controller: scrollController,
-                            padding: const EdgeInsets.all(10),
+                            // padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 130),
                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 5,
@@ -85,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                                   // Navigator.push(context, MaterialPageRoute(builder: (_) => const PlayerScreen()));
                                 },
                                 child: Card(
+                                  color: rBgColor,
                                   shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(35),
